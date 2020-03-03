@@ -11,9 +11,9 @@ def getpopu(filename,month,year):#必要な情報のみを抽出
 
 if __name__=='__main__':
   
-  month=4#抽出する月を決める
+  month=11#抽出する月を決める
   
-  choose="総人口"#グラフ化する要素を入力
+  choose="外国人世帯数"#グラフ化する要素を入力
   
   colu=["日本人","外国人","総人口","日本人男性","日本人女性","外国人男性","外国人女性","基本世帯数","外国人世帯数","総世帯数"]#要素
   year31 = getpopu("20191108-170947.xlsx",month,31)
@@ -30,7 +30,7 @@ if __name__=='__main__':
   popudata = popudata.set_index("年度")#index変更
   print(popudata)
   
-  popudata[[choose]].plot.bar(title="西尾の"+choose,figsize=(10,6))
-  plt.ylim(169000,173000)
+  popudata[["日本人男性","日本人女性"]].plot.bar(title="西尾の"+choose,figsize=(10,6))
+  plt.ylim(2000,170000)
   plt.legend(loc="lower left")
-  plt.savefig("population.png")
+  plt.savefig(choose+str(month)+".png")
